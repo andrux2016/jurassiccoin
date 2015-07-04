@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: jurassiccoin
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# jurassiccoin_enable (bool): Set to NO by default. Set this variable to YES if you want to enable jurassiccoin service.
+# jurassiccoin_config (path): Set to /usr/local/etc/jurassiccoin.conf by default.
+# jurassiccoin_user:  The user account jurassiccoin daemon runs as. It uses 'root' user by default.
+# jurassiccoin_group: The group account jurassiccoin daemon runs as. It uses 'wheel' group by default.
+# jurassiccoin_datadir (str): Default to "/var/db/jurassiccoin". Base data directory.
+
+. /etc/rc.subr
+
+name=jurassiccoin
+rcvar=jurassiccoin_enable
+
+: ${jurassiccoin_enable:=NO}
+: ${jurassiccoin_config=/usr/local/etc/jurassiccoin.conf}
+: ${jurassiccoin_datadir=/var/db/jurassiccoin}
+: ${jurassiccoin_user="root"}
+: ${jurassiccoin_group="wheel"}
+
+required_files=${jurassiccoin_config}
+command=/usr/local/bin/jurassiccoind
+jurassiccoin_chdir=${jurassiccoin_datadir}
+pidfile="${jurassiccoin_datadir}/jurassiccoind.pid"
+stop_cmd=jurassiccoin_stop
+command_args="-conf=${jurassiccoin_config} -datadir=${jurassiccoin_datadir} -noupnp -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+jurassiccoin_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${jurassiccoin_datadir}
+	[ $? -eq 0 ] && chown -R ${jurassiccoin_user}:${jurassiccoin_group} ${jurassiccoin_datadir}
+}
+
+jurassiccoin_prestart()
+{
+	if [ ! -d "${jurassiccoin_datadir}/." ]; then
+		jurassiccoin_create_datadir || return 1
+	fi
+}
+
+jurassiccoin_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+jurassiccoin_stop()
+{
+    jurassiccoin_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${jurassiccoin_config} -datadir=${jurassiccoin_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"

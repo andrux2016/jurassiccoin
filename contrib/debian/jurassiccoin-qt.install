@@ -1,0 +1,5 @@
+jurassiccoin-qt usr/bin
+share/pixmaps/jurassiccoin32.xpm usr/share/pixmaps
+share/pixmaps/jurassiccoin80.xpm usr/share/pixmaps
+debian/jurassiccoin-qt.desktop usr/share/applications
+debian/jurassiccoin-qt.protocol usr/share/kde4/services/

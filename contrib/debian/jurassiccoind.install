@@ -1,0 +1,2 @@
+debian/bin/jurassiccoind usr/bin
+src/jurassiccoind usr/lib/jurassiccoin

@@ -1,9 +1,9 @@
-Building NovaCoin
+Building JurassicCoin
 
-See doc/readme-qt.rst for instructions on building NovaCoin Qt,
+See doc/readme-qt.rst for instructions on building JurassicCoin Qt,
 the intended-for-end-users, nice-graphical-interface, reference
-implementation of NovaCoin.
+implementation of JurassicCoin.
 
-See doc/build-*.txt for instructions on building novacoind,
+See doc/build-*.txt for instructions on building Jurassiccoind,
 the intended-for-services, no-graphical-interface, reference
-implementation of NovaCoin.
+implementation of JurassicCoin.

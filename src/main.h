@@ -42,7 +42,7 @@ static const unsigned int MAX_INV_SZ = 50000;
 static const int64_t MIN_TX_FEE = CENT/10;
 static const int64_t MIN_RELAY_TX_FEE = CENT/50;
 
-static const int64_t MAX_MONEY = 2000000000 * COIN;
+static const int64_t MAX_MONEY = 100000000 * COIN;
 static const int64_t MAX_MINT_PROOF_OF_WORK = 100 * COIN;
 static const int64_t MAX_MINT_PROOF_OF_STAKE = 1 * COIN;
 static const int64_t MIN_TXOUT_AMOUNT = CENT/100;
@@ -964,7 +964,7 @@ public:
     // ppcoin: entropy bit for stake modifier if chosen by modifier
     unsigned int GetStakeEntropyBit(unsigned int nHeight) const
     {
-        // Protocol switch to support p2pool at novacoin block #9689
+        // Protocol switch to support p2pool at jurassiccoin block #9689
         if (nHeight >= 9689 || fTestNet)
         {
             // Take last bit of block hash as entropy bit
@@ -974,7 +974,7 @@ public:
             return nEntropyBit;
         }
 
-        // Before novacoin block #9689 - get from pregenerated table
+        // Before jurassiccoin block #9689 - get from pregenerated table
         int nBitNum = nHeight & 0xFF;
         int nItemNum = nHeight / 0xFF;
 
