@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2013 The NovaCoin developers
+// Copyright (c) 2013 The JurassicCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -654,7 +654,7 @@ void StakeMiner(CWallet *pwallet)
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
-    RenameThread("novacoin-miner");
+    RenameThread("jurassiccoin-miner");
 
     MidstateMap inputsMap;
     if (!FillMap(pwallet, GetAdjustedTime(), inputsMap))
