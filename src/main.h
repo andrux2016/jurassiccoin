@@ -44,7 +44,7 @@ static const int64_t MIN_RELAY_TX_FEE = CENT/50;
 
 static const int64_t MAX_MONEY = 100000000 * COIN;
 static const int64_t MAX_MINT_PROOF_OF_WORK = 100 * COIN;
-static const int64_t MAX_MINT_PROOF_OF_STAKE = 1 * COIN;
+static const int64_t MAX_MINT_PROOF_OF_STAKE = 10 * COIN;
 static const int64_t MIN_TXOUT_AMOUNT = CENT/100;
 
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
@@ -59,8 +59,8 @@ static const int fHaveUPnP = true;
 static const int fHaveUPnP = false;
 #endif
 
-static const uint256 hashGenesisBlock("0x00000a060336cbb72fe969666d337b87198b1add2abaa59cca226820b32933a4");
-static const uint256 hashGenesisBlockTestNet("0x000c763e402f2436da9ed36c7286f62c3f6e5dbafce9ff289bd43d7459327eb");
+static const uint256 hashGenesisBlock("0x...");
+static const uint256 hashGenesisBlockTestNet("0x...");
 
 inline int64_t PastDrift(int64_t nTime)   { return nTime - 2 * 60 * 60; } // up to 2 hours from the past
 inline int64_t FutureDrift(int64_t nTime) { return nTime + 2 * 60 * 60; } // up to 2 hours from the future
